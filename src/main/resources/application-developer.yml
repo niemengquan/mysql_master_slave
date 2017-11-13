@@ -1,0 +1,59 @@
+#多数据源，一个主两个从
+druid.datasource:
+       #设置从库的数量
+       readSize: 2
+       #使用druid数据源
+       type: com.alibaba.druid.pool.DruidDataSource
+
+       #主库配置
+       write:
+              url: jdbc:mysql://127.0.0.1:3380/test?useUnicode=true&characterEncoding=utf-8
+              username: root
+              password: root
+              driverClassName: com.mysql.jdbc.Driver
+              filters: stat,wall,log4j
+              initialSize: 5
+              minIdle: 5
+              maxActive: 20
+              maxWait: 60000
+              timeBetweenEvictionRunsMillis: 60000
+              minEvictableIdleTimeMillis: 300000
+              testWhileIdle: true
+              testOnBorrow: false
+              testOnReturn: false
+              poolPreparedStatements: true
+              maxOpenPreparedStatements: 20
+       read1:
+               url: jdbc:mysql://127.0.0.1:3381/test?useUnicode=true&characterEncoding=utf-8
+               username: root
+               password: root
+               driverClassName: com.mysql.jdbc.Driver
+               filters: stat,wall,log4j
+               initialSize: 5
+               minIdle: 5
+               maxActive: 20
+               maxWait: 60000
+               timeBetweenEvictionRunsMillis: 60000
+               minEvictableIdleTimeMillis: 300000
+               testWhileIdle: true
+               testOnBorrow: false
+               testOnReturn: false
+               poolPreparedStatements: true
+               maxOpenPreparedStatements: 20
+       read2:
+               url: jdbc:mysql://127.0.0.1:3381/test?useUnicode=true&characterEncoding=utf-8
+               username: root
+               password: root
+               driverClassName: com.mysql.jdbc.Driver
+               filters: stat,wall,log4j
+               initialSize: 5
+               minIdle: 5
+               maxActive: 20
+               maxWait: 60000
+               timeBetweenEvictionRunsMillis: 60000
+               minEvictableIdleTimeMillis: 300000
+               testWhileIdle: true
+               testOnBorrow: false
+               testOnReturn: false
+               poolPreparedStatements: true
+               maxOpenPreparedStatements: 20
