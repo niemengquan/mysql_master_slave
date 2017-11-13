@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by niemengquan on 2017/11/9.
  */
-@Api(value = "购物车操作接口",description = "购物车的Restful接口操作")
+@Api(value = "tbCartController",description = "购物车的Restful接口操作")
 @RestController
 public class TbCartController {
     @Autowired
@@ -85,6 +85,24 @@ public class TbCartController {
         }
         this.tbCartService.deleteTbCartById(id);
         return ResponseEntity.ok("ok");
+    }
+
+    /**
+     * 根据Id更新购物车数据
+     * @param cart
+     * @return
+     */
+    @PutMapping(value = "/cart/update")
+    @ApiOperation(value = "根据Id更新购物车数据")
+    public ResponseEntity<String> updateTbCart(TbCart cart) {
+        if(StringUtils.isEmpty(cart.getId())||StringUtils.isEmpty(cart.getUserId())||StringUtils.isEmpty(cart.getItemId())){
+            return ResponseEntity.ok("请填写必要的信息");
+        }
+        Integer integer = this.tbCartService.updateTbCartById(cart);
+        if (integer == 1)
+            return ResponseEntity.ok("ok");
+        else
+            return ResponseEntity.ok("fault");
     }
 
 }

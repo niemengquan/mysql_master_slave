@@ -38,4 +38,11 @@ public interface ITbCartService {
      * @return
      */
     Integer saveTbCart(TbCart cart);
+
+    /**
+     * 更新数据
+     * @param cart
+     * @return
+     */
+    Integer updateTbCartById(TbCart cart);
 }

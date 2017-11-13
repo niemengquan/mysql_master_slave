@@ -9,6 +9,7 @@ import com.nmq.mysql.vo.ViewListResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -50,5 +51,15 @@ public class TbCartServiceImpl  implements ITbCartService{
         cart.setCreated(date);
         cart.setUpdated(date);
         return this.cartMapper.insert(cart);
+    }
+
+    @Override
+    public Integer updateTbCartById(TbCart cart) {
+        if (StringUtils.isEmpty(cart.getId())){
+            return 0;
+        }
+        //补全cart数据
+        cart.setUpdated(new Date());
+        return this.cartMapper.updateByPrimaryKey(cart);
     }
 }
